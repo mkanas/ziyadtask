@@ -53,6 +53,8 @@ export default function ProductDetail() {
 
     fetchData()
   }, [id])
+  if (!product) return
+  const { title, rating, price, stock, description } = product
 
   if (!product)
     return (
@@ -76,7 +78,7 @@ export default function ProductDetail() {
               <div className="rounded-xl bg-black/10 overflow-hidden border ">
                 <Image
                   src={activeImage}
-                  alt={product.title}
+                  alt={title}
                   width={600}
                   height={600}
                   className="w-full object-cover"
@@ -112,34 +114,34 @@ export default function ProductDetail() {
           <div className="space-y-6">
             {/* TITLE */}
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-              {product.title}
+              {title}
             </h1>
 
             {/* RATING */}
             <div className="flex items-center gap-2 text-sm">
-              <Rating value={product.rating} />
+              <Rating value={rating} />
             </div>
 
             {/* PRICE */}
             <div className="w-full h-px bg-gray-200 my-4" />
             <div className="flex items-end gap-2">
               <span className="text-3xl font-bold text-gray-900">
-                ${product.price.toLocaleString('en-US')}
+                ${price.toLocaleString('en-US')}
               </span>
               <span className="text-sm text-gray-400 line-through">
-                ${(product.price * 1.2).toFixed(0)}
+                ${(price * 1.2).toFixed(0)}
               </span>
             </div>
             <span className="text-gray-500 font-bold text-[13px]">
               {' '}
-              Stock {product.stock}
+              Stock {stock}
             </span>
             {/* DIVIDER */}
             <div className="w-full h-px bg-gray-200 my-4" />
 
             {/* DESCRIPTION */}
             <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-              {product.description}
+              {description}
             </p>
 
             {/* ACTION BUTTONS */}
